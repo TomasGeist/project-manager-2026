@@ -1,0 +1,85 @@
+version: '3.9'
+
+services:
+
+  # AUTH SERVICE - Producción
+  auth-prod:
+    build:
+      context: ./auth-service
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+
+  # Para simular otros entornos:
+  # auth-dev:
+  #   build:
+  #     context: ./auth-service
+  #   ports:
+  #     - "3001:3000"
+  #   environment:
+  #     - NODE_ENV=development
+  #     - PORT=3000
+  #
+  # auth-staging:
+  #   build:
+  #     context: ./auth-service
+  #   ports:
+  #     - "3002:3000"
+  #   environment:
+  #     - NODE_ENV=staging
+  #     - PORT=3000
+
+  # PROJECTS SERVICE - Producción
+  projects-prod:
+    build:
+      context: ./projects-service
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+
+  # Para simular otros entornos:
+  # projects-dev:
+  #   build:
+  #     context: ./projects-service
+  #   ports:
+  #     - "4001:4000"
+  #   environment:
+  #     - NODE_ENV=development
+  #     - PORT=4000
+  #
+  # projects-staging:
+  #   build:
+  #     context: ./projects-service
+  #   ports:
+  #     - "4002:4000"
+  #   environment:
+  #     - NODE_ENV=staging
+  #     - PORT=4000
+
+  # HEALTH SERVICE
+  health-service:
+    build:
+      context: ./health-service
+    ports:
+      - "5000:5000"
+    depends_on:
+      - auth-prod
+      - projects-prod
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+      - PROJECTS_SERVICE_URL=http://projects-prod:4000
+
+  frontend:
+    build:
+      context: ./front-end
+    ports:
+      - "5173:80"  
+    depends_on:
+      - auth-prod
+      - projects-prod
+      - health-service
