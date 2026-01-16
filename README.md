@@ -66,8 +66,11 @@ Credenciales de prueba (usuario por defecto para login):
 
 Capturas:
 
-- Insertaré aquí la foto del login.
-- Después añadiré capturas del dashboard mostrando proyectos y environments.
+- <img width="1920" height="950" alt="image" src="https://github.com/user-attachments/assets/c6840d0b-6232-4547-9288-557adebc5cbc" />
+(Login y credenciales)
+
+- <img width="1431" height="594" alt="image" src="https://github.com/user-attachments/assets/757e865e-bf21-4eb7-82a9-614d40af9dc8" />
+  (Dashboard simple de proyectos)
 
 Comportamiento del dashboard
 
@@ -75,6 +78,4 @@ Comportamiento del dashboard
 - Por defecto, los endpoints de health son:
 	- http://localhost:3000/health (auth)
 	- http://localhost:4000/health (projects)
-- En la interfaz verás los servicios que están "ON" y los que están "OFF". Si quieres que aparezcan como "ON", descomenta las instancias correspondientes en `docker-compose.yml` y levanta más servicios.
-
-Si quieres, puedo añadir las capturas directamente al repo (`docs/screenshots`) y referenciarlas desde el `README.md`.
+- En la interfaz verás los servicios que están "ON" y los que están "OFF". Si se quiere que aparezcan como "ON", descomenta las instancias correspondientes en `docker-compose.yml` y levanta más servicios.
